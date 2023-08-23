@@ -1,0 +1,65 @@
+server:
+    port: 1002
+    
+spring:
+    application:
+        name: expertbridge-fusion
+    cloud:
+        config:
+            uri: http://expertbridge-config:8888
+            name: config-server
+
+eureka:
+    client:
+        registerWithEureka: true
+        fetchRegistry: true
+
+
+############################### Credit Switch configuration #########################
+thirdParty:
+    creditSwitch:
+        loginId: 575433
+        apiKey: DznLLYsiIUzfiglc6fTLuiwTjLcQ7hPRQI7VeOTLZ295BDJgHvJ252yhHhhHPkgp37cPhaTXNtRxqJ1OSr67LEi1H2
+        baseUrl: https://portal.creditswitch.com/api/v1
+        privateKey: uDBCxTD9w7s5vpPkzNO1EYciuMLmHebUN3YLWlCLJnpm5GdSo8ULXLdLOfNfhg4FdIGprxeh70OVdsDGpQEgl80Gvv
+        smsSenderId: FastCredit
+    bills:
+        vendor: CREDIT_SWITCH
+        credit_switch:
+            electricity:
+                products:
+                    prepaid:
+                        count: 9
+                        prepaid1: Ikeja Electric Disco|E01E
+                        prepaid2: Ibadan Electric Disco|E03E
+                        prepaid3: Eko Electric Disco|E05E
+                        prepaid4: Abuja Electric Disco|E07E
+                        prepaid5: Port-Harcourt Electric|E09E
+                        prepaid6: Kaduna Electric Disco|E11E
+                        prepaid7: Jos Electric Disco|E13E
+                        prepaid8: Enugu Electric Disco|E15E
+                        prepaid9: Kano Electric Disco|E17E
+                    postpaid:
+                        count: 9
+                        postpaid1: Ikeja Electric Disco|E02E
+                        postpaid2: Ibadan Electric Disco|E04E
+                        postpaid3: Eko Electric Disco|E06E
+                        postpaid4: Abuja Electric Disco|E08E
+                        postpaid5: Port-Harcourt Electric disco|E10E
+                        postpaid6: Kaduna Electric Disco|E12E
+                        postpaid7: Jos Electric Disco|E14E
+                        postpaid8: Enugu Electric Disco|E16E
+                        postpaid9: Kano Electric Disco|E18E
+
+expertBridge:
+    accounts:
+        cableTvPoolAccount: NGN1113300010001
+        electricityPoolAccount: NGN1113300010001
+    branch:
+        defaultBranch: NG0010001
+
+    baseUrl: https://localhost:8443/expertbridge/api
+
+bvn:
+    url: https://localhost:3456/bvn/details
+    token: test_token

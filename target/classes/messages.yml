@@ -1,0 +1,76 @@
+
+appMessages:
+    agent:
+        notexist: No agent exist with terminal ID {0}
+        inactive: Agent record with terminal ID {0} is inactive
+        account:
+            notexist: No account number is mapped to terminal ID {0}
+        mobile:
+            notexist: No agent exist with phone number {0}
+    user:
+        notexist: The request is from an unknown user {0}
+    insufficient:
+        balance: Transaction cannot be completed. Insufficient balance
+    ft:
+        success: Your funds transfer request was successful
+        failed: Your funds transfer request failed
+        fallback: Unable to complete funds transfer request at this moment. Service will be back shortly - {0}
+    customer:
+        inactive: Customer record with mobile number {0} is inactive
+        noexist: No customer record found using the mobile or customer number {0}
+    account:
+        noprimary: Account number {0} is not associated with the customer with mobile {1}
+        restricted: The account number {0} with category {1} is restricted from performing this transaction
+        notexist: No record found using the account number {0}
+        beneficiary:
+            notexist: Sorry, Unable to retrieve beneficiary account details. Please Try again
+        same: The debit account cannot be same as credit account
+        notwallet: The account number {0} is not a wallet
+        iswallet: The account number {0} is a wallet and not supported for this transaction
+    request:
+        processing: Your request is processing. Do not repeat without a check
+        hash:
+            failed: Bad request
+        sameid: A record with the Request ID {0} already exist
+        norole: You donot have permission to use this resource
+        success: Successful operation.
+    transaction:
+        noexist: No record found using the transaction reference {0}
+        irreversible: The transaction cannot be reversed using this method. Kindly reverse by raising another transaction.
+        norepeat: The transaction failed. Do not repeat
+        disallowed: You are not allowed to perform this transaction
+        branch:
+            mismatch: The transaction branch cannot be {0}. Kindly change the branch to DIGITAL
+        tierlimit:
+            daily:
+                withdrawal:
+                    exceeded: Limit will be exceeded for account {0}. Customer's today cummulative withdrawal is {1} so far. Tier {2} limit is {3}
+            trans:
+                withdrawal:
+                    exceeded: Limit will be exceeded for account {0}. Transaction limit for a tier {1} is {2}
+        override:
+            success: Transaction with reference {0} completed successfully
+    fallback:
+        callback: Unable to process funds transfer request at this moment. Service will be back shortly - {0}
+    branch:
+        noexist: No branch record exist with the branch code {0}
+    teller:
+        norecord: No teller record found using {0} as {1}
+        exist: A teller with {0} {1} exist in branch {2}
+        status: The teller {0} status is {1} and cannot be updated. Kindly {2} first.
+    mismatch:
+        pin: You entered invalid PIN.
+        imei: Sorry, you are using unknown device.
+
+
+######################## Additional messages #########################
+    clientRequest:
+        failedModel: Either one of the mobileNumber or list of mobileNumbers is required, but not both.
+        dataPlan:
+            invalidDataPlanId: The dataPlanId provided is invalid
+    thirdPartyRequest:
+        dataPlans:
+            unavailable: Failure to retrieve and verify data plans
+        cableTv:
+            invalidBiller: Invalid cableTv biller for serviceId lookup
+            invalidBillerForProduct: Invalid cableTv biller for product list lookup
