@@ -1,6 +1,7 @@
 package com.techplanet.expertbridge.fusion.controller;
 
 import com.techplanet.expertbridge.fusion.constant.ApiPath;
+import com.techplanet.expertbridge.fusion.constant.StringValues;
 import com.techplanet.expertbridge.fusion.jwt.JwtTokenUtil;
 import com.techplanet.expertbridge.fusion.payload.*;
 import com.techplanet.expertbridge.fusion.security.AesService;
@@ -14,6 +15,7 @@ import com.techplanet.expertbridge.fusion.exception.ExceptionResponse;
 import com.techplanet.expertbridge.fusion.model.AppUser;
 import com.techplanet.expertbridge.fusion.repository.CustomerRepository;
 import com.techplanet.expertbridge.fusion.service.AirtimeDataService;
+import com.techplanet.expertbridge.fusion.service.BettingService;
 import com.techplanet.expertbridge.fusion.service.CableTvService;
 import com.techplanet.expertbridge.fusion.service.ElectricityService;
 import com.techplanet.expertbridge.fusion.validation.ModelValidator;
@@ -27,9 +29,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
@@ -64,7 +64,10 @@ public class CreditSwitchController {
      
     @Autowired
     private CableTvService cableTvService; 
-     
+
+    @Autowired
+    private BettingService bettingService;
+
     
     @Autowired
     private ModelValidator modelValidator;
@@ -307,6 +310,70 @@ public class CreditSwitchController {
             oCableTvPaymentRequestPayload.setToken(token);
             oCableTvPaymentRequestPayload.setAppUser(oValidatorPayload.getAppUser());
             return new ResponseEntity<>(cableTvService.processCableTvPaymentRequest(oCableTvPaymentRequestPayload), HttpStatus.OK);
+        }
+    }
+
+    @PostMapping(value = ApiPath.BETTING, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> handleBettingProvidersRequest(@RequestBody GenericPayload requestPayload, HttpServletRequest httpRequest) {
+        String token = httpRequest.getHeader(HEADER_STRING).replace(TOKEN_PREFIX, "");
+
+        PlainTextPayload oValidatorPayload = validateChannelAndRequest(SEND_SMS, requestPayload, token);
+        if (oValidatorPayload.isError()) {
+            return new ResponseEntity<>(oValidatorPayload.getResponse(), HttpStatus.OK);
+        } else {
+            // Do model validation.
+            PlainTextPayload validationPayload = modelValidator.doModelValidation(requestPayload, oValidatorPayload);
+            if (validationPayload.isError()) {
+                return ResponseEntity.ok(validationPayload.getResponse());
+            }
+            //Valid request
+            BettingProvidersRequestPayload oBettingProviderRequestPayload = gson.fromJson(oValidatorPayload.getPlainTextPayload(), BettingProvidersRequestPayload.class);
+            oBettingProviderRequestPayload.setToken(token);
+            oBettingProviderRequestPayload.setAppUser(oValidatorPayload.getAppUser());
+            return new ResponseEntity<>(bettingService.processBettingProvidersListRequest(oBettingProviderRequestPayload), HttpStatus.OK);
+        }
+    }
+
+    @PostMapping(value = ApiPath.BET_ACCOUNT_VALIDATION, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> handleBettingAccountValidationRequest(@RequestBody GenericPayload requestPayload, HttpServletRequest httpRequest) {
+        String token = httpRequest.getHeader(HEADER_STRING).replace(TOKEN_PREFIX, "");
+
+        PlainTextPayload oValidatorPayload = validateChannelAndRequest(SEND_SMS, requestPayload, token);
+        if (oValidatorPayload.isError()) {
+            return new ResponseEntity<>(oValidatorPayload.getResponse(), HttpStatus.OK);
+        } else {
+            // Do model validation.
+            PlainTextPayload validationPayload = modelValidator.doModelValidation(requestPayload, oValidatorPayload);
+            if (validationPayload.isError()) {
+                return ResponseEntity.ok(validationPayload.getResponse());
+            }
+            //Valid request
+            BetAccountValidationRequestPayload oBetAccountValidationRequestPayload = gson.fromJson(oValidatorPayload.getPlainTextPayload(), BetAccountValidationRequestPayload.class);
+            oBetAccountValidationRequestPayload.setToken(token);
+            oBetAccountValidationRequestPayload.setAppUser(oValidatorPayload.getAppUser());
+            return new ResponseEntity<>(bettingService.processBetAccountValidation(oBetAccountValidationRequestPayload), HttpStatus.OK);
+        }
+    }
+
+
+    @PostMapping(value = ApiPath.BET_ACCOUNT_FUNDING, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> handleBettingAccountFundingRequest(@RequestBody GenericPayload requestPayload, HttpServletRequest httpRequest) {
+        String token = httpRequest.getHeader(HEADER_STRING).replace(TOKEN_PREFIX, "");
+
+        PlainTextPayload oValidatorPayload = validateChannelAndRequest(SEND_SMS, requestPayload, token);
+        if (oValidatorPayload.isError()) {
+            return new ResponseEntity<>(oValidatorPayload.getResponse(), HttpStatus.OK);
+        } else {
+            // Do model validation.
+            PlainTextPayload validationPayload = modelValidator.doModelValidation(requestPayload, oValidatorPayload);
+            if (validationPayload.isError()) {
+                return ResponseEntity.ok(validationPayload.getResponse());
+            }
+            //Valid request
+            BetAccountFundingRequestPayload oBetAccountFundingRequestPayload = gson.fromJson(oValidatorPayload.getPlainTextPayload(), BetAccountFundingRequestPayload.class);
+            oBetAccountFundingRequestPayload.setToken(token);
+            oBetAccountFundingRequestPayload.setAppUser(oValidatorPayload.getAppUser());
+            return new ResponseEntity<>(bettingService.processBetAccountFunding(oBetAccountFundingRequestPayload), HttpStatus.OK);
         }
     }
 }

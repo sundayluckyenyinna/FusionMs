@@ -1,0 +1,95 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/fusionms
+    username: root
+    password: 123456Professor?
+    driverClassName: com.mysql.jdbc.Driver
+    port: 3306
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+      ddl-auto: update
+
+  mail:
+    username: sundayluckyenyinnadeveloper@gmail.com
+
+
+thirdParty:
+  creditSwitch:
+    loginId: 315432
+    apiKey: 07WTWqthqL8Bi9m2gR0vTY6WIw1IMh6B6mwitGk4jXIT43bpvOvQGrIS3Db2g5ydBY680PJQwJNjDsyhnFYRrGDn1R
+    baseUrl: http://176.58.99.160:9012/api/v1
+    privateKey: wf2MQRjqFCgyfO1CnmegKAb7gTOZSSdbzw78MiL1NGuQuLjHqBut4phZE9UU9ufWWFxv5RODXb4UcXR0GBAugif8dC
+    smsSenderId: FastCredit
+
+  bills:
+    vendor: CREDIT_SWITCH
+    credit_switch:
+      electricity:
+        products:
+          prepaid:
+            count: 9
+            prepaid1: Ikeja Electric Disco|E01E
+            prepaid2: Ibadan Electric Disco|E03E
+            prepaid3: Eko Electric Disco|E05E
+            prepaid4: Abuja Electric Disco|E07E
+            prepaid5: Port-Harcourt Electric|E09E
+            prepaid6: Kaduna Electric Disco|E11E
+            prepaid7: Jos Electric Disco|E13E
+            prepaid8: Enugu Electric Disco|E15E
+            prepaid9: Kano Electric Disco|E17E
+          postpaid:
+            count: 9
+            postpaid1: Ikeja Electric Disco|E02E
+            postpaid2: Ibadan Electric Disco|E04E
+            postpaid3: Eko Electric Disco|E06E
+            postpaid4: Abuja Electric Disco|E08E
+            postpaid5: Port-Harcourt Electric disco|E10E
+            postpaid6: Kaduna Electric Disco|E12E
+            postpaid7: Jos Electric Disco|E14E
+            postpaid8: Enugu Electric Disco|E16E
+            postpaid9: Kano Electric Disco|E18E
+
+expertBridge:
+  accounts:
+    cableTvPoolAccount: NGN1113300010001
+    electricityPoolAccount: NGN1113300010001
+  branch:
+    defaultBranch: NG0010001
+
+  baseUrl: https://localhost:8443/expertbridge/api
+
+bvn:
+  url: https://localhost:3456/bvn/details
+  token: test_token
+
+jwt:
+  security:
+    key: j3H5Ld5nYmGWyULy6xwpOgfSH++NgKXnJMq20vpfd+8=t
+  signing:
+    key: j3H5Ld5nYmGWyULy6xwpOgfSH++NgKXnJMq20vpfd+8=t
+aes:
+  encryption:
+    key: 77T18925x42783H7508302949Q618671
+
+account:
+  pool:
+    airtime: NGN1113300010001
+transaction:
+  code:
+    airtime: AIRTIME
+    bills: BILLS
+
+
+sms:
+  gateway:
+    key: gateway-key
+  sender:
+    id: FastCredit
+
+digital:
+  branch: NG0010001

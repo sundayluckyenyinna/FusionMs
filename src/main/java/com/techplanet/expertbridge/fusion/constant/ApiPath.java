@@ -38,6 +38,11 @@ public class ApiPath {
     public static final String CS_SINGLE_CABLE_TV_PAYMENT = "/starvend1";
     public static final String CS_MULTI_CHOICE_CABLE_TV_PAYMENT = "/cabletv/multichoice/vend";
 
+    // BETTING
+    public static final String CS_BETTING_PROVIDERS = "/betting/providers?loginId=%s&key=%s";
+    public static final String CS_BET_ACCOUNT_VALIDATION = "/betting/validate";
+    public static final String CS_BETTING_PAY = "/betting/pay";
+
 
     // ################################# Client Request Endpoint ########################### //
     
@@ -58,5 +63,10 @@ public class ApiPath {
     // Messaging Service
     public static final String SEND_EMAIL_URL = "/email/send";
     public static final String SEND_SMS_URL = "/sms/send";
+
+    // BETTING
+    public static final String BETTING = "/betting/providers";
+    public static final String BET_ACCOUNT_VALIDATION = "/betting/account-validation";
+    public static final String BET_ACCOUNT_FUNDING = "/betting/account-funding";
     
 }
